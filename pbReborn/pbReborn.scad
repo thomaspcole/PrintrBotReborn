@@ -3,6 +3,7 @@
 use <pbRebornZ.scad>
 use <pbRebornZCarriage.scad>
 use <pbRebornY.scad>
+use <pbRebornX.scad>
 
 //min:
 //max:
@@ -42,6 +43,9 @@ module printedParts(){
     
     translate([0,0,-47.5])
     yFrameConnectors(); 
+    
+    translate([xPos, 0,zPos-5])
+    xCarriage();
 }
 
 
