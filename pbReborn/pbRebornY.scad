@@ -2,13 +2,13 @@ use <lib.scad>
 
 //bed mockup
 color("Gray")
-translate([0,0,50])
+translate([0,0,65])
 cube([178,114,6],center=true);
 
 module yFrameConnector(){
     translate([0,0,15])
     difference(){
-        cube([18,10,30],center=true);
+        cube([18,7,30],center=true);
         
         translate([0,7,10])
         rotate([90,0,0])
@@ -29,7 +29,7 @@ module yFrameConnector(){
     }
 
     difference(){
-        cube([30,10,5],center=true);
+        cube([30,7,5],center=true);
         
         translate([12.5,0,-5])
         cylinder(d=3,h=10,$fn=30);
@@ -41,15 +41,16 @@ module yFrameConnector(){
 
 module motorAndIdeler(){
     //motor
-    translate([-15,110,42/2])
+    translate([-15,110,42/2+10])
     rotate([0,-90,0])
     difference(){
         union(){
-            cube([42,42,5],center=true);
+            translate([-5,0,0])
+            cube([47,42,5],center=true);
             
-            translate([-42/2,0,42/2-2.5])
+            translate([-42/2-9,0,42/2-2.5])
             rotate([0,90,0])
-            cube([42,60,5],center=true);
+            cube([42,60,7],center=true);
         }
         
         nemaHoles();
@@ -71,27 +72,28 @@ module motorAndIdeler(){
         cylinder(d=3,h=10, $fn=30);
     }
     
-    translate([0,-100,30/2])
+    translate([0,-100,30/2+10])
     difference(){
         union(){
-            cube([19,15,25],center=true);
+            translate([0,0,-5])
+            cube([19,15,35],center=true);
             
-            translate([0,0,-30/2])
+            translate([0,0,-30/2-10])
             cube([35,15,5],center=true);
         }
         
         translate([0,0,5]){
-            cube([13,20,20],center=true);
+            cube([13,20,25],center=true);
             
             translate([-10,0,0])
             rotate([0,90,0])
             cylinder(d=3,h=50,$fn=20);
         }
         
-        translate([13.5,0,-20])
+        translate([13.5,0,-30])
         cylinder(d=3,h=10,$fn=30);
         
-        translate([-13.5,0,-20])
+        translate([-13.5,0,-30])
         cylinder(d=3,h=10,$fn=30);
     }
 }
@@ -109,54 +111,101 @@ module rods(){
 }
 
 module bedConnector(){
-//    color("Tan")
-//    hull(){
-//        translate([87,55,35])
-//        cylinder(d=15,h=13);
-//        
-//        translate([-87,-55,35])
-//        cylinder(d=15,h=13);
-//    }
-//    
-//    color("Tan")
-//    hull(){
-//        translate([-87,55,35])
-//        cylinder(d=15,h=13);
-//        
-//        translate([87,-55,35])
-//        cylinder(d=15,h=13);
-//    }
-    
     difference(){
-        translate([84,0,33])
-        cube([25,55,5],center=true);
+        union(){
+            translate([84,0,33])
+            cube([35,55,5],center=true);
+            
+            translate([84,-30,40.5])
+            cube([35,5,20],center=true);
+            
+            translate([84,0,48])
+            cube([20,120,5],center=true);
+            
+            translate([84,30,40.5])
+            cube([35,5,20],center=true);
+        }
         
         translate([84,0,33])
         cube([15,48.5,6],center=true);
-         
-        translate([84,24,25])
-        rotate([90,0,0])
-        %cylinder(d=15,h=48);  
+        
+        //holes for zipties 
+        translate([71,20,33])
+        cube([3,5,20],center=true); 
+        
+        translate([71,7,33])
+        cube([3,5,20],center=true);
+        
+        translate([71,-7,33])
+        cube([3,5,20],center=true);
+        
+        translate([71,-20,33])
+        cube([3,5,20],center=true);
+        
+        translate([97,20,33])
+        cube([3,5,20],center=true);
+        
+        translate([97,7,33])
+        cube([3,5,20],center=true);
+        
+        translate([97,-7,33])
+        cube([3,5,20],center=true);
+        
+        translate([97,-20,33])
+        cube([3,5,20],center=true);
+    }
+    
+    difference(){
+        hull(){
+            translate([84,40,45.5])
+            cylinder(d=12,h=5);
+            
+            translate([5.05,10,48.5])
+            cube([10,20,5],center=true);
+        }
+        
+        translate([2,15,48])
+        cube([4,3,7],center=true);
+    }
+    
+    difference(){
+        hull(){
+            translate([84,-40,45.5])
+            cylinder(d=12,h=5);
+            
+            translate([5.05,-10,48.5])
+            cube([10,20,5],center=true);
+        }
+        
+        translate([2,-15,48])
+        cube([4,3,7],center=true);
     }
 }
 
-module yFrameConnectors(){
-    translate([178/2-5,165/2-5,0])
+module yFrameConnectors(yPos){
+    translate([178/2-5,165/2-3.5,0])
     rotate([0,0,180])
     yFrameConnector();
     
-    translate([178/2-5,-165/2+5,0])
+    translate([178/2-5,-165/2+3.5,0])
     rotate([0,0,180])
     yFrameConnector();
     
-    translate([-178/2+5,165/2-5,0])
+    translate([-178/2+5,165/2-3.5,0])
     yFrameConnector();
     
-    translate([-178/2+5,-165/2+5,0])
+    translate([-178/2+5,-165/2+3.5,0])
     yFrameConnector();
+    
+    translate([0,yPos,0])    
+    bedConnector();
+    
+    translate([0,yPos,0])
+    mirror([1,0,0])
+    bedConnector();
     
     motorAndIdeler();
-    bedConnector();
+
 }
 
 rods();
