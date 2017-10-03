@@ -59,9 +59,10 @@ module leftCarriage(right){
     }
     
     //horizontal rod mount
-    translate([13,-16,-5.5])
+    translate([13,-25,-5.5])
     difference(){
-        cube([12,14,12],center=true);
+        translate([0,4,0])
+        cube([12,24,12],center=true);
         
         translate([0,-5,0])
         cube([15,10,1.5],center=true);
@@ -77,9 +78,10 @@ module leftCarriage(right){
         cylinder(d=3,h=20,$fn=30);
     }
     
-    translate([13,16,-5.5])
+    translate([13,25,-5.5])
     difference(){
-        cube([12,14,12],center=true);
+        translate([0,-5,0])
+        cube([12,24,12],center=true);
         
         translate([0,5,0])
         cube([15,10,1.5],center=true);

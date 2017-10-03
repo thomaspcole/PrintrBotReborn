@@ -4,10 +4,11 @@ use <pbRebornZ.scad>
 use <pbRebornZCarriage.scad>
 use <pbRebornY.scad>
 use <pbRebornX.scad>
+use <e3d.scad>
 
-//min:
-//max:
-//range:
+//min:~-83
+//max: ~83
+//range: 166mm
 xPos = 0;
 
 //min:
@@ -18,7 +19,7 @@ yPos = 0;
 //min: 50
 //max: 270
 //range: 220mm
-zPos = 50;
+zPos = 70;
 
 module printedParts(){
     translate([-135,0,0])
@@ -70,12 +71,12 @@ module metalParts(){
     cylinder(d=8,h=280,$fn=60);
     
     color("Silver")
-    translate([-255/2,15,zPos-5.5])
+    translate([-255/2,24,zPos-5.5])
     rotate([0,90,0])
     cylinder(d=8,h=255,$fn=60);
     
     color("Silver")
-    translate([-255/2,-15,zPos-5.5])
+    translate([-255/2,-24,zPos-5.5])
     rotate([0,90,0])
     cylinder(d=8,h=255,$fn=60);
     
@@ -97,6 +98,12 @@ module metalParts(){
     color("Gray")
     translate([-137,0,-26.5])
     cube([42,42,46],center=true);
+    
+    
+    color("Silver")
+    translate([xPos,0,zPos-.5])
+    rotate([180,0,180])
+    e3d();
 }
 
 module frame(){
@@ -106,7 +113,10 @@ module frame(){
         cube([320,13,380],center=true);
         
         translate([0,0,-10])
-        cube([200,20,360],center=true);
+        cube([210,20,360],center=true);
+        
+        translate([0,0,10])
+        cube([270,20,250],center=true);
     }
     
     color("Tan")
@@ -114,11 +124,11 @@ module frame(){
     cube([320,270,13],center=true);
     
     color("Tan")
-    translate([130,97,100])
+    translate([145,97,100])
     cube([13,115,300],center=true);
     
     color("Tan")
-    translate([-130,97,100])
+    translate([-145,97,100])
     cube([13,115,300],center=true);
     
 }
