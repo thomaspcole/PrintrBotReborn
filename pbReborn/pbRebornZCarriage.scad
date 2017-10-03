@@ -10,14 +10,6 @@ module leftCarriage(right){
             
             translate([0,0,-9])
             cube([25,20,5],center=true);
-            
-            if(right == true){
-                translate([14,-13,13])
-                cube([14,7,15],center=true);
-                
-                translate([20,12,10])
-                cube([14,5,15],center=true);
-            }
         }
         
         //threaded rod cutout
@@ -39,56 +31,39 @@ module leftCarriage(right){
         
         translate([17,0,12])
         lm8uu();
-        
-        if(right == true){
-            //hole for belt bearing
-            translate([13,-8,13])
-            rotate([90,0,0])
-            cylinder(d=5,h=10,$fn=30);
-            
-            //holes for limit switch
-            translate([25,15,14.5])
-            rotate([90,0,0])
-            cylinder(d=2.5,h=10,$fn=30);
-            
-            //holes for limit switch
-            translate([25,15,10-4.5])
-            rotate([90,0,0])
-            cylinder(d=2.5,h=10,$fn=30);
-        }
     }
     
-    //horizontal rod mount
-    translate([13,-25,-5.5])
+    //horizontal rod mount    
+    translate([14,17,-5.5])
     difference(){
-        translate([0,4,0])
-        cube([12,24,12],center=true);
-        
-        translate([0,-5,0])
-        cube([15,10,1.5],center=true);
-        
-        translate([-6.5,1,0])
-        rotate([0,90,0])
-        cylinder(d=8.25,h=15,$fn=30);
-        
-        translate([3,-4.6,-10])
-        cylinder(d=3,h=20,$fn=30);
-        
-        translate([-3,-4.6,-10])
-        cylinder(d=3,h=20,$fn=30);
-    }
-    
-    translate([13,25,-5.5])
-    difference(){
-        translate([0,-5,0])
-        cube([12,24,12],center=true);
+        translate([0,0,0])
+        cube([14,15,12],center=true);
         
         translate([0,5,0])
         cube([15,10,1.5],center=true);
         
-        translate([-6.5,-1,0])
+        translate([-8,-1,0])
         rotate([0,90,0])
-        cylinder(d=8.25,h=15,$fn=30);
+        cylinder(d=8.25,h=20,$fn=30);
+        
+        translate([3,4.6,-10])
+        cylinder(d=3,h=20,$fn=30);
+        
+        translate([-3,4.6,-10])
+        cylinder(d=3,h=20,$fn=30);
+    }
+    
+    translate([14,17,29.5])
+    difference(){
+        translate([0,0,0])
+        cube([14,15,12],center=true);
+        
+        translate([0,5,0])
+        cube([15,10,1.5],center=true);
+        
+        translate([-8,-1,0])
+        rotate([0,90,0])
+        cylinder(d=8.25,h=20,$fn=30);
         
         translate([3,4.6,-10])
         cylinder(d=3,h=20,$fn=30);
@@ -103,23 +78,7 @@ module rightCarriage(){
     mirror([1,0,0])
     leftCarriage(false);
     
-    translate([30,0,-9]){
-        cube([35,25,5],center=true);
-        
-        translate([0,-10,0])
-        cube([42,5,5],center=true);
-        
-        translate([-33.5,-10.5,17])
-        cube([35,4,15],center=true);
-    }
     
-    translate([30,-10,14])
-    difference(){
-        cube([42,5,42],center=true);
-        
-        rotate([90,0,0])
-        nemaHoles();
-    }
 }
 
 module rods(){

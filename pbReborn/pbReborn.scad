@@ -19,7 +19,7 @@ yPos = 0;
 //min: 50
 //max: 270
 //range: 220mm
-zPos = 70;
+zPos = 50;
 
 module printedParts(){
     translate([-135,0,0])
@@ -71,12 +71,12 @@ module metalParts(){
     cylinder(d=8,h=280,$fn=60);
     
     color("Silver")
-    translate([-255/2,24,zPos-5.5])
+    translate([-255/2,16,zPos-5.5])
     rotate([0,90,0])
     cylinder(d=8,h=255,$fn=60);
     
     color("Silver")
-    translate([-255/2,-24,zPos-5.5])
+    translate([-255/2,16,zPos+29.5])
     rotate([0,90,0])
     cylinder(d=8,h=255,$fn=60);
     
@@ -101,8 +101,8 @@ module metalParts(){
     
     
     color("Silver")
-    translate([xPos,0,zPos-.5])
-    rotate([180,0,180])
+    translate([xPos,-10,zPos+35])
+    rotate([180,0,0])
     e3d();
 }
 
@@ -114,9 +114,6 @@ module frame(){
         
         translate([0,0,-10])
         cube([210,20,360],center=true);
-        
-        translate([0,0,10])
-        cube([270,20,250],center=true);
     }
     
     color("Tan")
