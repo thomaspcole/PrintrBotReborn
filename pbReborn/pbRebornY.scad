@@ -55,19 +55,19 @@ module motorAndIdeler(){
         
         nemaHoles();
         
-        translate([-25,-25,35])
+        translate([-35,-25,35])
         rotate([0,90,0])
         cylinder(d=3,h=10, $fn=30);
         
-        translate([-25,-25,3])
+        translate([-35,-25,3])
         rotate([0,90,0])
         cylinder(d=3,h=10, $fn=30);
         
-        translate([-25,25,35])
+        translate([-35,25,35])
         rotate([0,90,0])
         cylinder(d=3,h=10, $fn=30);
         
-        translate([-25,25,3])
+        translate([-35,25,3])
         rotate([0,90,0])
         cylinder(d=3,h=10, $fn=30);
     }
